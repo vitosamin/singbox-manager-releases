@@ -9,15 +9,27 @@
 проверяя бинарник **запуском**, а не по названию — на старых Keenetic `mips` и
 `mipsle` путаются, и по названию легко поставить нерабочий.
 
+## Постоянные ссылки
+
+- **Установщик (все платформы и архитектуры):**
+  https://github.com/vitosamin/singbox-manager-releases/releases/latest/download/singbox-manager-installer.tar.gz
+- **Эта инструкция:**
+  https://github.com/vitosamin/singbox-manager-releases/blob/main/INSTALL-ru.md
+
+Ссылки не меняются от версии к версии: `latest` всегда отдаёт свежий пакет.
+
 ## Что нужно
 
-1. Keenetic с установленным Entware **или** OpenWrt.
-2. `sing-box`, установленный в системе:
-   - Keenetic: `opkg install sing-box`
-   - OpenWrt: `opkg update && opkg install sing-box`
-3. Свободный порт **9091**.
-4. Место под пакет: ~150 МБ на Keenetic (`/opt/tmp`), на OpenWrt хватит `/tmp`,
+1. Keenetic с установленным Entware **или** OpenWrt (24 — opkg, 25 — apk).
+2. Свободный порт **9091**.
+3. Место под пакет: ~150 МБ на Keenetic (`/opt/tmp`), на OpenWrt хватит `/tmp`,
    если в нём есть 50 МБ — иначе см. «Мало места».
+
+Установщик сам ставит **sing-box 1.14.2** — официальный архив SagerNet под
+архитектуру роутера (mips/mipsle — softfloat). Пакет из `opkg`/`apk` для
+sing-box не используется: на OpenWrt 24 там 1.13, и панель с таким конфигом
+ругается на неизвестные поля. Сам пакетный менеджер нужен только для `wget`
+и `ca-bundle` (`opkg update` / `apk update` установщик делает сам).
 
 ## Keenetic
 
@@ -35,7 +47,6 @@ sh install.sh
 ## OpenWrt
 
 ```sh
-opkg update && opkg install sing-box wget-ssl
 cd /tmp
 wget -O sbm.tar.gz https://github.com/vitosamin/singbox-manager-releases/releases/latest/download/singbox-manager-installer.tar.gz
 tar -xzf sbm.tar.gz && cd singbox-manager-* && sh install.sh
