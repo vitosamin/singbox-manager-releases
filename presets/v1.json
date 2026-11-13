@@ -1,9 +1,12 @@
 [
   {
     "id": "vitosamin-full",
-    "name": "Полный набор VitosaminTM",
-    "desc": "Проверенный на домашнем роутере набор: 21 гео-правило, свои списки (Ru напрямую, Block, YouTube, CloudFMy), исключение CLOUDFLARE из geoip и правила: торренты напрямую, блокировка QUIC, подрезка MSS, сброс соединений. Заменяет ваши правила целиком — включайте, только если своих правил ещё нет.",
+    "name": "Улучшенный VitosaminTM",
+    "desc": "Домашний набор в улучшенном виде: 22 гео-правила (включая YouTube и Telegram), исключение CLOUDFLARE из адресных правил и правила: торренты напрямую, блокировка QUIC, подрезка MSS, сброс соединений. Заменяет ваши правила целиком — включайте, только если своих правил ещё нет.",
     "replaces": true,
+    "bypass_geo_tags": [
+      "RU"
+    ],
     "geo_exclude": [
       "CLOUDFLARE"
     ],
@@ -91,6 +94,10 @@
       {
         "kind": "geosite",
         "tag": "SPOTIFY"
+      },
+      {
+        "kind": "geosite",
+        "tag": "YOUTUBE"
       }
     ],
     "lists": [
@@ -539,6 +546,78 @@
         "cidrs": []
       }
     ],
+    "rules": {
+      "block_quic": true,
+      "flush_conntrack": true,
+      "mss_clamp": true,
+      "torrent_direct": true
+    },
+    "order": 1
+  },
+  {
+    "id": "general",
+    "name": "Общий",
+    "desc": "Сбалансированный набор для большинства: Telegram, YouTube, соцсети, GitHub и ИИ-сервисы через общий обход, CLOUDFLARE исключён из адресных правил. Торренты напрямую, QUIC заблокирован, MSS подрезан. Заменяет ваши правила целиком.",
+    "order": 2,
+    "replaces": true,
+    "geo_exclude": [
+      "CLOUDFLARE"
+    ],
+    "enabled_geo": [
+      {
+        "kind": "geosite",
+        "tag": "TELEGRAM"
+      },
+      {
+        "kind": "geosite",
+        "tag": "YOUTUBE"
+      },
+      {
+        "kind": "geosite",
+        "tag": "META"
+      },
+      {
+        "kind": "geosite",
+        "tag": "INSTAGRAM"
+      },
+      {
+        "kind": "geosite",
+        "tag": "TWITTER"
+      },
+      {
+        "kind": "geosite",
+        "tag": "DISCORD"
+      },
+      {
+        "kind": "geosite",
+        "tag": "TIKTOK"
+      },
+      {
+        "kind": "geosite",
+        "tag": "WHATSAPP"
+      },
+      {
+        "kind": "geosite",
+        "tag": "GITHUB"
+      },
+      {
+        "kind": "geosite",
+        "tag": "CATEGORY-AI"
+      },
+      {
+        "kind": "geosite",
+        "tag": "OPENAI"
+      },
+      {
+        "kind": "geosite",
+        "tag": "NETFLIX"
+      },
+      {
+        "kind": "geosite",
+        "tag": "SPOTIFY"
+      }
+    ],
+    "lists": [],
     "rules": {
       "block_quic": true,
       "flush_conntrack": true,
